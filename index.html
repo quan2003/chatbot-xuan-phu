@@ -321,7 +321,8 @@
             } else if (event.error === 'network') {
                 message = "Lỗi kết nối mạng. Vui lòng kiểm tra lại Wifi/4G của bạn.";
             } else {
-                message += "Vui lòng thử lại bằng Chrome hoặc Safari chính thức.";
+                // Sửa dòng này để xem lỗi thật sự là gì
+                message = "Mã lỗi gốc của Android là: " + event.error;
             }
             alert(message);
         };
