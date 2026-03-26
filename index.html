@@ -312,7 +312,18 @@
         recognition.onerror = function(event) {
             console.error("Speech recognition error", event.error);
             stopRecordingUI();
-            alert("Có lỗi nhận diện giọng nói. Vui lòng cấp quyền Micro hoặc thử lại.");
+            
+            let message = "Có lỗi nhận diện giọng nói. ";
+            if (event.error === 'not-allowed') {
+                message = "Trình duyệt không được phép truy cập Micro. Bạn hãy nhấn vào biểu tượng ổ khóa (Lock) bên cạnh thanh địa chỉ và chọn 'Cho phép (Allow)' Micro nhé.";
+            } else if (event.error === 'no-speech') {
+                message = "AI không nghe thấy tiếng của bạn. Bạn hãy thử nói to hơn hoặc để Micro gần miệng hơn nhé.";
+            } else if (event.error === 'network') {
+                message = "Lỗi kết nối mạng. Vui lòng kiểm tra lại Wifi/4G của bạn.";
+            } else {
+                message += "Vui lòng thử lại bằng Chrome hoặc Safari chính thức.";
+            }
+            alert(message);
         };
 
         recognition.onend = function() {
