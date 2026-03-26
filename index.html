@@ -348,19 +348,15 @@
             return;
         }
 
-        // --- MỞ KHÓA ÂM THANH CHO IPHONE/ANDROID --- 
-        // Tạo một Audio rỗng và phát thử để trình duyệt cho phép AI phát tiếng sau đó
-        const silentAudio = new Audio();
-        silentAudio.play().catch(() => {}); 
-
         if(isRecording) {
+            // Nếu đang thu âm thì mới dừng lại
             recognition.stop();
         } else {
+            // TRƯỚC KHI BẬT MIC: Không được chạy bất kỳ lệnh Audio.play() nào ở đây
             try {
                 recognition.start();
             } catch (e) {
                 console.error("Lỗi khi khởi động Mic:", e);
-                // Nếu mic đang bận hoặc lỗi, thử khởi động lại
                 recognition.stop();
                 setTimeout(() => recognition.start(), 300);
             }
