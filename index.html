@@ -343,29 +343,50 @@
 
     function toggleRecording() {
         if(!recognition) {
-            alert("Trình duyệt không hỗ trợ nhận diện giọng nói (Khuyên dùng Chrome/Safari).");
+            alert("Trình duyệt không hỗ trợ nhận diện giọng nói (Khuyên dùng Chrome/Safari chính thức).");
             return;
         }
+
+        // --- MỞ KHÓA ÂM THANH CHO IPHONE/ANDROID --- 
+        // Tạo một Audio rỗng và phát thử để trình duyệt cho phép AI phát tiếng sau đó
+        const silentAudio = new Audio();
+        silentAudio.play().catch(() => {}); 
+
         if(isRecording) {
             recognition.stop();
         } else {
-            recognition.start();
+            try {
+                recognition.start();
+            } catch (e) {
+                console.error("Lỗi khi khởi động Mic:", e);
+                // Nếu mic đang bận hoặc lỗi, thử khởi động lại
+                recognition.stop();
+                setTimeout(() => recognition.start(), 300);
+            }
         }
     }
 
     function stopRecordingUI() {
         isRecording = false;
-        document.getElementById('btnPushToTalk').classList.remove('recording');
-        document.getElementById('btnPushToTalk').innerHTML = '<i class="ph-fill ph-microphone"></i> <span>Nhấn để nói</span>';
+        const btnMic = document.getElementById('btnPushToTalk');
+        btnMic.classList.remove('recording');
+        btnMic.innerHTML = '<i class="ph-fill ph-microphone"></i> <span>Nhấn để nói</span>';
+        btnMic.onclick = toggleRecording; // Đảm bảo gán lại hàm nếu đã bị thay đổi bởi playTTS fallback
     }
 
     function addVoiceMessage(text, className) {
+        if(!text) return; // Không hiển thị tin nhắn rỗng
         const display = document.getElementById('voiceChatDisplay');
         const msg = document.createElement('div');
         msg.className = `message ${className}`;
         msg.innerText = text;
         display.appendChild(msg);
-        display.scrollTop = display.scrollHeight;
+        
+        // Cuộn mượt xuống cuối
+        display.scrollTo({
+            top: display.scrollHeight,
+            behavior: 'smooth'
+        });
     }
 
     // 2. Chuyển văn bản tới Chatbot (Giả lập do chưa có API Token Chatbot NLP)
@@ -387,22 +408,34 @@
             
             // 3. Từ kết quả Chatbot -> Truyền qua TTS phát giọng Mỹ An
             playTTS(botReply);
-        }, 1500);
+        }, 1200);
     }
 
     function setProcessingState(isActive, text = "") {
         const indicator = document.getElementById('processingIndicator');
         const statusText = document.getElementById('statusText');
+        const soundWave = document.querySelector('.sound-wave');
+        
         if(isActive) {
             indicator.classList.remove('hidden');
             statusText.innerText = text;
+            if(text.includes("nói")) soundWave.style.opacity = '1';
         } else {
             indicator.classList.add('hidden');
+            soundWave.style.opacity = '0';
         }
     }
 
     // 4. Gọi API FPT AI Text-to-Speech
+    let currentAudio = null;
+
     function playTTS(text) {
+        // Dừng âm thanh cũ nếu đang phát
+        if(currentAudio) {
+            currentAudio.pause();
+            currentAudio = null;
+        }
+
         setProcessingState(true, "Đang tạo giọng nói...");
 
         fetch("https://api.fpt.ai/hmi/tts/v5", {
@@ -416,23 +449,32 @@
         .then(response => response.json())
         .then(data => {
             if(data && data.async) {
-                // Đợi một khoảng để FPT AI Render audio
-                setTimeout(() => {
-                    const audio = new Audio(data.async);
-                    audio.play();
-                    
-                    // Phát audio thành công: Cập nhật UI (vẫn có thể giữ hiệu ứng sóng âm đang nói)
-                    setProcessingState(true, "AI đang nói...");
-                    const soundWave = document.querySelector('.sound-wave');
-                    soundWave.style.opacity = '1';
+                // Trên iOS/Android cần tương tác người dùng để phát audio, ở đây đã lồng trong toggleRecording()
+                setProcessingState(true, "AI đang nói...");
+                
+                currentAudio = new Audio(data.async);
+                // Thử phát ngay
+                let playPromise = currentAudio.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.error("Audio play failed:", error);
+                        // Nếu vẫn lỗi phát (thường do Safari/Chrome mobile chặn), hiển thị nút để User bấm phát thủ công
+                        setProcessingState(true, "Nhấn để nghe AI trả lời");
+                        const btnMic = document.getElementById('btnPushToTalk');
+                        btnMic.innerHTML = '<i class="ph-fill ph-play-circle"></i> <span>Nghe trả lời</span>';
+                        btnMic.onclick = () => {
+                            currentAudio.play();
+                            stopRecordingUI();
+                            btnMic.onclick = toggleRecording; // Trả lại hàm gốc
+                        };
+                    });
+                }
 
-                    audio.onended = () => {
-                        setProcessingState(false);
-                    };
-                    audio.onerror = () => {
-                        setProcessingState(false);
-                    };
-                }, 2000); 
+                currentAudio.onended = () => {
+                    setProcessingState(false);
+                    currentAudio = null;
+                };
             } else {
                 setProcessingState(false);
             }
