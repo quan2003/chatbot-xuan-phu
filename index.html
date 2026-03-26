@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trợ lý Hành chính - Xã Xuân Phú, TP Đà Nẵng</title>
+    <meta name="description" content="Cổng thông tin hỗ trợ tra cứu thủ tục hành chính trực tuyến bằng AI Xã Xuân Phú, TP Đà Nẵng.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons for modern minimalist icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="ph-fill ph-robot"></i>
+                <div class="logo-text">
+                    <h1>Trợ lý ảo hành chính</h1>
+                    <p>Xã Xuân Phú, TP Đà Nẵng</p>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="active">Trang chủ</a>
+                <a href="#features">Tính năng AI</a>
+                <a href="#about">Hướng dẫn</a>
+            </div>
+            <button class="ph-list mobile-menu-btn"></button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        
+        <div class="hero-content">
+            <span class="badge"><i class="ph-fill ph-sparkle"></i> Trợ Lý Thông Minh</span>
+            <h1 class="hero-title">Giải đáp thủ tục hành chính<br>Trợ lý ảo AI</h1>
+            <p class="hero-subtitle">Chào mừng bạn đến với kênh hỗ trợ trực tuyến của Xã Xuân Phú. Hãy nhắn tin ngay với Trợ lý ảo AI để được hướng dẫn thủ tục, quy định và giấy tờ một cách nhanh chóng, chính xác 24/7.</p>
+            
+            <div class="cta-container">
+                <button class="btn-call-ai" onclick="openVoicebotModal()" id="btnCallAI">
+                    <i class="ph-fill ph-phone-call"></i> Gọi AI (Voicebot)
+                </button>
+                <div class="cta-arrow animate-bounce" style="margin-top: 2rem;">
+                    <i class="ph-bold ph-arrow-down"></i>
+                </div>
+                <p class="cta-text">Hoặc xem biểu tượng Chat màu xanh ở góc phải để nhắn tin!</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container" id="features">
+        <div class="section-header">
+            <h2>Hệ Sinh Thái Hỗ Trợ AI</h2>
+            <p>Ứng dụng công nghệ trí tuệ nhân tạo để phục vụ người dân tốt hơn</p>
+        </div>
+        
+        <div class="services-grid">
+            <!-- Service Card 1 -->
+            <div class="service-card highlight">
+                <div class="card-icon blue">
+                    <i class="ph ph-chat-teardrop-text"></i>
+                </div>
+                <div class="status-badge pulse-active">Đang hoạt động</div>
+                <h3>Chatbot AI Trực Tuyến</h3>
+                <p>Hỏi đáp trực tiếp mọi thủ tục hành chính bằng văn bản. Trợ lý ảo sẽ tự động phân tích câu hỏi và cung cấp mẫu đơn, quy trình, giấy tờ cần thiết ngay lập tức.</p>
+            </div>
+            
+            <!-- Service Card 2 -->
+            <div class="service-card">
+                <div class="card-icon purple">
+                    <i class="ph ph-phone-call"></i>
+                </div>
+                <div class="status-badge pulse-active">Đang hoạt động</div>
+                <h3>Gọi Điện Thoại AI (Voicebot)</h3>
+                <p>Tổng đài viên ảo hỗ trợ giải đáp bằng giọng nói tự nhiên, giao tiếp hai chiều. Giúp người lớn tuổi hoặc người không thạo công nghệ dễ dàng tra cứu bằng lời nói.</p>
+            </div>
+            
+            <!-- Service Card 3 -->
+            <div class="service-card">
+                <div class="card-icon teal">
+                    <i class="ph ph-clock-countdown"></i>
+                </div>
+                <h3>Sẵn Sàng Hỗ Trợ 24/7</h3>
+                <p>Không bị giới hạn bởi giờ hành chính. Trợ lý AI luôn túc trực để giải đáp mọi thắc mắc của bạn bất cứ lúc nào, kể cả ban đêm hay các ngày lễ, tết.</p>
+            </div>
+            
+            <!-- Service Card 4 -->
+            <div class="service-card">
+                <div class="card-icon orange">
+                    <i class="ph ph-shield-check"></i>
+                </div>
+                <h3>Thông Tin Chính Xác</h3>
+                <p>Kho dữ liệu của Trợ lý ảo được huấn luyện và cập nhật liên tục theo các quy định, thông tư mới nhất từ Bộ thủ tục hành chính và UBND các cấp.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-box">
+                <h4 class="stat-number">1S</h4>
+                <p>Tốc độ phản hồi trung bình</p>
+            </div>
+            <div class="stat-box">
+                <h4 class="stat-number">24/7</h4>
+                <p>Hỗ trợ giải đáp liên tục</p>
+            </div>
+            <div class="stat-box">
+                <h4 class="stat-number">100%</h4>
+                <p>Tự động hóa bằng AI</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guide Section -->
+    <section class="guide-section" id="about">
+        <div class="guide-container">
+            <div class="section-header">
+                <h2>Hướng Dẫn Sử Dụng</h2>
+                <p>3 bước đơn giản để tra cứu thủ tục bằng Trợ lý ảo AI</p>
+            </div>
+            
+            <div class="steps-wrapper">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon blue">
+                        <i class="ph ph-hand-pointing"></i>
+                    </div>
+                    <h3>Khởi Động</h3>
+                    <p>Nhấn vào biểu tượng Chat màu xanh ở góc phải màn hình hoặc nút "Gọi AI (Voicebot)" để bắt đầu.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon purple">
+                        <i class="ph ph-chat-circle-dots"></i>
+                    </div>
+                    <h3>Đặt Câu Hỏi</h3>
+                    <p>Nhập từ khóa thủ tục (VD: "Đăng ký kết hôn", "Khai sinh") hoặc nhấn micro để nói trực tiếp yêu cầu của bạn.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon teal">
+                        <i class="ph ph-file-text"></i>
+                    </div>
+                    <h3>Nhận Kết Quả</h3>
+                    <p>AI sẽ ngay lập tức cung cấp quy trình, mẫu đơn, và hướng dẫn chi tiết để bạn chuẩn bị hồ sơ chính xác.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>UBND Xã Xuân Phú</h3>
+                <p><i class="ph ph-map-pin"></i> Xã Xuân Phú, TP Đà Nẵng</p>
+                <p><i class="ph ph-phone"></i> (0236) 3xxx xxxx</p>
+                <p><i class="ph ph-envelope"></i> xuanphu@danang.gov.vn</p>
+            </div>
+            <div class="footer-notice">
+                <p>Cổng thông tin hỗ trợ tra cứu thủ tục trực tuyến.</p>
+                <p>Ứng dụng công nghệ Trí tuệ nhân tạo tiên tiến.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Voicebot Modal UI -->
+    <div id="voicebotModal" class="voicebot-modal">
+        <div class="voicebot-content">
+            <button class="close-btn" onclick="closeVoicebotModal()"><i class="ph ph-x"></i></button>
+            <div class="voicebot-header">
+                <img src="https://bqn.1cdn.vn/2024/10/30/bieu-trung.png" alt="AI Logo" class="ai-avatar pulse-avatar">
+                <h3>Trợ lý AI - Xã Xuân Phú</h3>
+                <p>Trực tuyến</p>
+            </div>
+            
+            <div class="chat-display" id="voiceChatDisplay">
+                <div class="message ai-message">Chào bà con. Tôi là trợ lý AI hỗ trợ thủ tục. Bà con cần giúp gì cứ nhấn micro nói nhé!</div>
+            </div>
+
+            <div class="voicebot-controls">
+                <div id="processingIndicator" class="processing-indicator hidden">
+                    <span class="status-text" id="statusText">AI đang suy nghĩ...</span>
+                    <div class="sound-wave">
+                        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    </div>
+                </div>
+                
+                <button id="btnPushToTalk" class="btn-mic" onclick="toggleRecording()">
+                    <i class="ph-fill ph-microphone"></i>
+                    <span>Nhấn để nói</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FPT.AI Chatbot Implementation -->
+    
+<script>
+  // Configs
+  let liveChatBaseUrl   = document.location.protocol + '//' + 'livechat.fpt.ai/v36/src'
+  let LiveChatSocketUrl = 'livechat.fpt.ai:443'
+  let FptAppCode        = '034ade321e723a5f1ab6877ccd4637e9'
+  let FptAppName        = 'Trợ lý ảo hành chính Xã Xuân Phú'
+  // Define custom styles
+  let CustomStyles = {
+      // header
+      headerBackground: 'linear-gradient(86.7deg, #3353a2ff 0.85%, #31b7b7ff 98.94%)',
+      headerTextColor: '#ffffffff',
+      headerLogoEnable: false,
+      headerLogoLink: '',
+      headerText: 'TRỢ LÝ ẢO HÀNH CHÍNH',
+      // main
+      primaryColor: '#6d9ccbff',
+      secondaryColor: '#ecececff',
+      primaryTextColor: '#ffffffff',
+      secondaryTextColor: '#000000DE',
+      buttonColor: '#b4b4b4ff',
+      buttonTextColor: '#ffffffff',
+      bodyBackgroundEnable: false,
+      bodyBackgroundLink: '',
+      avatarBot: 'https://bqn.1cdn.vn/2024/10/30/bieu-trung.png',
+      sendMessagePlaceholder: 'Nhập câu hỏi của bà con...',
+      // float button
+      floatButtonLogo: 'https://bqn.1cdn.vn/2024/10/30/bieu-trung.png',
+      floatButtonTooltip: 'Tôi có thể giúp gì cho bà con?',
+      floatButtonTooltipEnable: true,
+      // start screen
+      customerLogo: 'https://bqn.1cdn.vn/2024/10/30/bieu-trung.png',
+      customerWelcomeText: 'Chào bà con! Vui lòng cho biết tên để Trợ lý ảo được hỗ trợ tốt hơn.',
+      customerButtonText: 'Bắt đầu ngay',
+      prefixEnable: false,
+      prefixType: 'radio',
+      prefixOptions: ["Anh","Chị"],
+      prefixPlaceholder: 'Danh xưng',
+      // custom css
+      css: ''
+  }
+  // Get bot code from url if FptAppCode is empty
+  if (!FptAppCode) {
+      let appCodeFromHash = window.location.hash.substr(1)
+      if (appCodeFromHash.length === 32) {
+          FptAppCode = appCodeFromHash
+      }
+  }
+  // Set Configs
+  let FptLiveChatConfigs = {
+      appName: FptAppName,
+      appCode: FptAppCode,
+      themes : '',
+      styles : CustomStyles
+  }
+  // Append Script
+  let FptLiveChatScript  = document.createElement('script')
+  FptLiveChatScript.id   = 'fpt_ai_livechat_script'
+  FptLiveChatScript.src  = liveChatBaseUrl + '/static/fptai-livechat.js'
+  document.body.appendChild(FptLiveChatScript)
+  // Append Stylesheet
+  let FptLiveChatStyles  = document.createElement('link')
+  FptLiveChatStyles.id   = 'fpt_ai_livechat_script'
+  FptLiveChatStyles.rel  = 'stylesheet'
+  FptLiveChatStyles.href = liveChatBaseUrl + '/static/fptai-livechat.css'
+  document.body.appendChild(FptLiveChatStyles)
+  // Init
+  FptLiveChatScript.onload = function () {
+      fpt_ai_render_chatbox(FptLiveChatConfigs, liveChatBaseUrl, LiveChatSocketUrl)
+  }
+</script>
+
+<script>
+    // === Logic Voicebot: STT -> Chatbot -> TTS === //
+    const apiKeyTTS = "e8fAARidrvDp736BrwSCce4mNEgsNi28";
+    let recognition;
+    let isRecording = false;
+
+    // 1. Khởi tạo Speech to Text (Sử dụng Web Speech API có sẵn của trình duyệt)
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        recognition = new SpeechRecognition();
+        recognition.continuous = false; // Chỉ nhận 1 câu rồi dừng
+        recognition.interimResults = false;
+        recognition.lang = 'vi-VN';
+
+        recognition.onstart = function() {
+            isRecording = true;
+            document.getElementById('btnPushToTalk').classList.add('recording');
+            document.getElementById('btnPushToTalk').innerHTML = '<i class="ph-fill ph-stop-circle"></i> <span>Đang nghe (Nhấn dừng)</span>';
+        };
+
+        recognition.onresult = function(event) {
+            const transcript = event.results[0][0].transcript;
+            addVoiceMessage(transcript, 'user-message');
+            // Từ STT -> Truyền qua xử lý Chatbot NLP
+            processMessageWithChatbot(transcript);
+        };
+
+        recognition.onerror = function(event) {
+            console.error("Speech recognition error", event.error);
+            stopRecordingUI();
+            alert("Có lỗi nhận diện giọng nói. Vui lòng cấp quyền Micro hoặc thử lại.");
+        };
+
+        recognition.onend = function() {
+            stopRecordingUI();
+        };
+    }
+
+    function openVoicebotModal() {
+        document.getElementById('voicebotModal').classList.add('active');
+        // Tuỳ chọn: Tự động chào hỏi khi bật modal
+    }
+
+    function closeVoicebotModal() {
+        document.getElementById('voicebotModal').classList.remove('active');
+        if(isRecording && recognition) recognition.stop();
+    }
+
+    function toggleRecording() {
+        if(!recognition) {
+            alert("Trình duyệt không hỗ trợ nhận diện giọng nói (Khuyên dùng Chrome/Safari).");
+            return;
+        }
+        if(isRecording) {
+            recognition.stop();
+        } else {
+            recognition.start();
+        }
+    }
+
+    function stopRecordingUI() {
+        isRecording = false;
+        document.getElementById('btnPushToTalk').classList.remove('recording');
+        document.getElementById('btnPushToTalk').innerHTML = '<i class="ph-fill ph-microphone"></i> <span>Nhấn để nói</span>';
+    }
+
+    function addVoiceMessage(text, className) {
+        const display = document.getElementById('voiceChatDisplay');
+        const msg = document.createElement('div');
+        msg.className = `message ${className}`;
+        msg.innerText = text;
+        display.appendChild(msg);
+        display.scrollTop = display.scrollHeight;
+    }
+
+    // 2. Chuyển văn bản tới Chatbot (Giả lập do chưa có API Token Chatbot NLP)
+    function processMessageWithChatbot(text) {
+        setProcessingState(true, "AI đang suy nghĩ...");
+        
+        // MÔ PHỎNG: Đợi 1.5s để Chatbot trả lời (Thực tế bạn sẽ gọi AJAX fetch tới fpt.ai/nlp ở đây)
+        setTimeout(() => {
+            let botReply = "Dạ, hệ thống đang ghi nhận từ khóa: '" + text + "'. Xin mời bà con đến bộ phận Một cửa để được hướng dẫn chi tiết thủ tục này nhé!";
+            
+            // Xử lý một vài câu có chủ đích cho tự nhiên
+            if(text.toLowerCase().includes("chào")) {
+                botReply = "Chào bà con! Hôm nay bà con cần hỗ trợ thủ tục gì ạ?";
+            } else if(text.toLowerCase().includes("khai sinh")) {
+                botReply = "Để làm giấy khai sinh, bà con vui lòng chuẩn bị Giấy chứng sinh của bệnh viện và CCCD của cha mẹ. Sau đó nộp tại bàn số 1 ạ.";
+            }
+
+            addVoiceMessage(botReply, 'ai-message');
+            
+            // 3. Từ kết quả Chatbot -> Truyền qua TTS phát giọng Mỹ An
+            playTTS(botReply);
+        }, 1500);
+    }
+
+    function setProcessingState(isActive, text = "") {
+        const indicator = document.getElementById('processingIndicator');
+        const statusText = document.getElementById('statusText');
+        if(isActive) {
+            indicator.classList.remove('hidden');
+            statusText.innerText = text;
+        } else {
+            indicator.classList.add('hidden');
+        }
+    }
+
+    // 4. Gọi API FPT AI Text-to-Speech
+    function playTTS(text) {
+        setProcessingState(true, "Đang tạo giọng nói...");
+
+        fetch("https://api.fpt.ai/hmi/tts/v5", {
+            method: "POST",
+            headers: {
+                "api-key": apiKeyTTS,
+                "voice": "myan" // Giọng Mỹ An
+            },
+            body: text
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data && data.async) {
+                // Đợi một khoảng để FPT AI Render audio
+                setTimeout(() => {
+                    const audio = new Audio(data.async);
+                    audio.play();
+                    
+                    // Phát audio thành công: Cập nhật UI (vẫn có thể giữ hiệu ứng sóng âm đang nói)
+                    setProcessingState(true, "AI đang nói...");
+                    const soundWave = document.querySelector('.sound-wave');
+                    soundWave.style.opacity = '1';
+
+                    audio.onended = () => {
+                        setProcessingState(false);
+                    };
+                    audio.onerror = () => {
+                        setProcessingState(false);
+                    };
+                }, 2000); 
+            } else {
+                setProcessingState(false);
+            }
+        })
+        .catch(error => {
+            console.error("Lỗi:", error);
+            setProcessingState(false);
+        });
+    }
+</script>
+
+</body>
+</html>
